@@ -1,0 +1,60 @@
+CREATE DATABASE GestionsBolo;
+USE GestionsBolo;
+
+
+CREATE TABLE Clients (
+  id_client int NOT NULL,
+  Nom varchar(300) NOT NULL,
+  Adresse varchar(95) NOT NULL,
+  PRIMARY KEY (id_client)
+);
+
+CREATE TABLE Produit (
+  id_produit int NOT NULL,
+  Nom varchar(75) NOT NULL,
+  Prix decimal(5,0) NOT NULL,
+  PRIMARY KEY (id_produit), 
+  CONSTRAINT ctrt_prix CHECK ((Prix > 4)) 
+  );
+  
+  CREATE TABLE Commande (
+  id_commande int NOT NULL,
+  id_client int NOT NULL,
+  id_produit int NOT NULL,
+  Quantité int NOT NULL,
+  date_commande date NOT NULL,
+  PRIMARY KEY (id_commande),
+  KEY id_client_idx (id_client),
+  KEY id_produit_idx (id_produit),
+  CONSTRAINT id_client FOREIGN KEY (id_client) REFERENCES Clients (id_client) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT id_produit FOREIGN KEY (id_produit) REFERENCES Produit (id_produit) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
+INSERT INTO Clients (id_client ,Nom ,Adresse)
+values
+(1 ,"Ahmed" ,"Tunisie"),  
+(2 ,"Coulibaly" ,"Sénégal"),  
+(3 ,"Hasan" ,"Egypte");
+
+
+INSERT INTO Produit (id_produit ,Nom ,Prix)
+values  
+(1 ,"Cookies" ,10),  
+(2 ,"Candy" ,5.2);
+INSERT INTO Commande (id_commande ,id_client ,id_produit ,Quantité ,date_commande )
+values
+(1 ,1 ,2 ,3 ,"2023-01-22"),  
+(2 ,2 ,1 ,10 ,"2023-04-14");
+
+UPDATE Commande
+SET Quantité = 6
+WHERE id_commande = 2;
+
+DELETE FROM Clients
+WHERE id_client = 3;
+
+
+DELETE FROM Commande
+WHERE id_commande > 0;
+
+
+DELETE FROM Commande;
