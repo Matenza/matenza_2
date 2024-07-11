@@ -6,7 +6,7 @@ import plotly.express as px
 from sklearn.preprocessing import LabelEncoder
 
 st.title("c'etait difficile")
-energi=pd.read_csv('Expresso_churn_dataset.csv', nrows =155000)
+energi=pd.read_csv('energi.csv')
 
 energi.info()
 
