@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.cluster import KMeans
 
 # Lire le fichier CSV
-energi = pd.read_csv('Expresso_churn_dataset.csv', nrows=155000)
+energi = pd.read_csv('energi.csv', nrows=155000)
 
 # Titre principal de l'application
 st.title("Analyse de Churn")
